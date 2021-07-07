@@ -23,8 +23,7 @@ namespace VirtualDmScreen.Controllers
 
         [Authorize]
         public async Task<ActionResult> Index()
-        {   
-            Console.WriteLine("hiii");
+        {
             string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
             Console.WriteLine(currentUser.UserName);
