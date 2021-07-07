@@ -1,0 +1,27 @@
+@using VirtualDmScreen.Models
+@model IEnumerable<VirtualDmScreen.Models.DiceRoll>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (DiceRoll roll in Model)
+    {
+      <li>
+        @Html.Display($"{roll.NumberOfDice} {roll.NumberOfSides} sided dice resulting in {roll.Result} total")
+      </li>
+    }
+  </ul>
+}
+
+@* @using (Html.BeginForm("Create","DiceRolls"))
+{
+  @Html.Label("How many dice are you rolling?")
+  @Html.TextBoxFor(model => model.NumberOfDice)
+
+  @Html.Label("How many sides does each die have? (they must all be the same)")
+  @Html.TextBoxFor(model => model.NumberOfSides)
+
+  <input type = "submit" value="Roll dem bones" class="btn btn-default" />
+} *@
+
+@Html.ActionLink("Roll some dice", "Create")
