@@ -28,7 +28,7 @@ namespace VirtualDmScreen
                 .AddDbContext<VirtualDmScreenContext>(options => options
                 .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<VirtualDmScreenContext>()
                 .AddDefaultTokenProviders();
 
