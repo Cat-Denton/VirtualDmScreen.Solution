@@ -52,10 +52,7 @@ namespace VirtualDmScreen.Controllers
     //Do we want to see Messages and Dicerolls?
     public ActionResult Details(int id)
     {
-      var thisCharacters = _db.Characters
-          .Include(Characters => Characters.JoinEntities)
-          .ThenInclude(join => join.Message)
-          .FirstOrDefault(Characters => Characters.CharacterId == id);
+      var thisCharacters = _db.Characters.FirstOrDefault(Characters => Characters.CharacterId == id);
       return View(thisCharacters);
     }
     
