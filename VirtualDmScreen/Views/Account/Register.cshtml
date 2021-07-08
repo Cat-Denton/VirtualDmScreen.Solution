@@ -6,14 +6,17 @@
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-  @Html.LabelFor(user => user.Email)
-  @Html.TextBoxFor(user=> user.Email)
-
-  @Html.LabelFor(user => user.Password)
-  @Html.PasswordFor(user => user.Password)
-
-  @Html.LabelFor(user => user.ConfirmPassword)
-  @Html.PasswordFor(user => user.ConfirmPassword)
-
-  <input type="submit" value="Register" />
+    @Html.LabelFor(user => user.Email)
+    @Html.TextBoxFor(user=> user.Email)
+    <br>
+    @Html.LabelFor(user => user.Password)
+    @Html.PasswordFor(user => user.Password)
+    <br>
+    @Html.LabelFor(user => user.ConfirmPassword)
+    @Html.PasswordFor(user => user.ConfirmPassword)
+    <br>
+    @Html.Label("Select role")
+    @Html.DropDownList("RoleId");
+    <br>
+    <input type="submit" value="Register" />
 }
