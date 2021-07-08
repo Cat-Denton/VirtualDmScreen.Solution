@@ -1,0 +1,7 @@
+<h1>Hello, @User.Identity.Name!</h1>
+<p>In theory, you should only be able to view this page if you are a DM.</p>
+
+@if (@User.IsInRole("DM"))
+{
+    <p>You <i>really</i> should only see this text if you have the DM role.</p>
+}
