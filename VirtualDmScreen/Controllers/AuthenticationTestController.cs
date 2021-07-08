@@ -30,6 +30,7 @@ namespace VirtualDmScreen.Controllers
             return View();
         }
 
+        [Authorize(Roles = "DM")]
         public async Task<ActionResult> DmPage()
         {
             string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

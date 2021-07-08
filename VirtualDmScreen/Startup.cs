@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using VirtualDmScreen.Models;
 using Microsoft.AspNetCore.Identity;
 
-
 namespace VirtualDmScreen
 {
     public class Startup
