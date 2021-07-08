@@ -19,17 +19,18 @@ namespace VirtualDmScreen.Models
 
         protected override void OnModelCreating(ModelBuilder builder) 
         {
+            base.OnModelCreating(builder);
             builder.Entity<ApplicationRole>().HasData(new List<ApplicationRole>
             {
                 new ApplicationRole
                 {
-                    Id = 1, 
+                    Id = "1", 
                     Name = "DM", 
                     NormalizedName = "DM"
                 },
                 new ApplicationRole 
                 {
-                    Id = 2, 
+                    Id = "2", 
                     Name = "Player", 
                     NormalizedName = "PLAYER"
                 },
