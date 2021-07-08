@@ -39,7 +39,8 @@ namespace VirtualDmScreen.Controllers
     {
       diceRoll.RollDice();
       diceRoll.DateTimeStamp = DateTime.Now;
-      Console.WriteLine(diceRoll.Result);
+      Console.WriteLine(diceRoll.Result + " " + diceRoll.DateTimeStamp);
+      diceRoll.CharacterId = 1;
       _db.DiceRolls.Add(diceRoll);
       _db.SaveChanges();
       return RedirectToAction("Index");
