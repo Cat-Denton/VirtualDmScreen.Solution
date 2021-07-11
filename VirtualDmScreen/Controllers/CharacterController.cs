@@ -56,6 +56,7 @@ namespace VirtualDmScreen.Controllers
       return View(thisCharacters);
     }
     
+    /* Commenting out Edit route, in event we want to return to it
     public ActionResult Edit(int id)
     {
       var thisCharacters = _db.Characters.FirstOrDefault(Characters => Characters.CharacterId == id);
@@ -69,6 +70,7 @@ namespace VirtualDmScreen.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    */
 
     public ActionResult Delete(int id)
     {

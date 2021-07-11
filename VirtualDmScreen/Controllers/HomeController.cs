@@ -33,5 +33,11 @@ namespace VirtualDmScreen.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [Route("/sample_page")]
+        public ActionResult SamplePage()
+        {
+            return View();
+        }
     }
 }
