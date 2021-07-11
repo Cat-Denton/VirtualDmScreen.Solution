@@ -27,19 +27,25 @@ select option[value="4"] {
   border: 1px solid black;
   height: 100px;
   background-color: white;
+  opacity: 0.7;
 }
 
 .col-3 {
   border: 1px solid black;
   height: 350px;
   background-color: white;
+  opacity: 0.7;
 }
 
 .col-6 {
   border: 1px solid black;
   height: 350px;
   background-color: white;
+  opacity: 0.7;
+}
+
+body {
   background-image: url('/img/party.jpg');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }

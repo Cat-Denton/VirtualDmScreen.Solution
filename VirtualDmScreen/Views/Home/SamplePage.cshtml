@@ -4,7 +4,19 @@
   Layout = "_Layout";
 }
 
+ <select id="Status" name="Status" onchange="changeBackground(document.getElementsByTagName('BODY')[0], this);" class="form-control">
+    <option style="background-image: url('/img/party.jpg');" value="party">Party of Adventurers</option>
+    <option style="background-image: url('/img/reddragon.jpg');" value="redDragon">Red Dragon</option>
+    <option style="background-image: url('/img/whitedragon.jpg');" value="whiteDragon">White Dragon</option>
+        <option style="background-image: url('/img/firebreath.jpg');" value="fireBreath">FireBreath</option>
 
+  </select>
+  <script>
+    function changeBackground(body, selectElement) {
+      selectElement.options[selectElement.selectedIndex].style.backgroundImage
+      body.setAttribute('style', 'background-image: ' + selectElement.options[selectElement.selectedIndex].style.backgroundImage + ';');
+    }
+  </script>
 
 @* Only changed background color within dropdown
 <select>
