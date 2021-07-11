@@ -25,8 +25,8 @@ namespace VirtualDmScreen.Controllers
 
     public ActionResult Index()
     {
-      List<DiceRoll> diceRolls = _db.DiceRolls.ToList();
-      return View(diceRolls);
+      ViewBag.diceRolls = _db.DiceRolls.ToList();
+      return View();
     }
 
     public ActionResult Create()
