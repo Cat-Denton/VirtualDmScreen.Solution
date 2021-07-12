@@ -1,15 +1,11 @@
-<link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+<link rel="stylesheet" href="~/css/styles.css" />
 <h1> Welcome to D&D </h1>
-@{
-  Layout = "_Layout";
-}
 
  <select id="Status" name="Status" onchange="changeBackground(document.getElementsByTagName('BODY')[0], this);" class="form-control">
     <option style="background-image: url('/img/party.jpg');" value="party">Party of Adventurers</option>
     <option style="background-image: url('/img/reddragon.jpg');" value="redDragon">Red Dragon</option>
     <option style="background-image: url('/img/whitedragon.jpg');" value="whiteDragon">White Dragon</option>
     <option style="background-image: url('/img/firebreath.jpg');" value="fireBreath">FireBreath</option>
-
   </select>
   <script>
     function changeBackground(body, selectElement) {
@@ -17,3 +13,50 @@
       body.setAttribute('style', 'background-image: ' + selectElement.options[selectElement.selectedIndex].style.backgroundImage + ';');
     }
   </script>
+  <hr>
+
+<div class="container">
+        <div class="row">
+            <div class="col-3">
+                <h1>Chat Box</h1>
+                <p>Some text here!</p>
+            </div>
+            <div class="col-6">
+            </div>
+            <div class="col-3">
+                <h1>Dice Box</h1>
+                <p>Some text here!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2" id="emptyBox">
+                  <p>@Html.ActionLink("Register/Login", "Index", "Account")</p>
+                  <p>@Html.ActionLink("Home", "Index", "Home")</p>
+            </div>
+            <div class="col-2" id="playerOne">
+                <h3>Player One</h3>
+                <input type="button" value="Pick Character" onclick= "location.href='@Url.Action("Index", "Home")'" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+            <div class="col-2">
+                <h3>Player Two</h3>
+                <input type="button" value="Pick Character" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+            <div class="col-2">
+                <h3>Player Three</h3>
+                <input type="button" value="Pick Character" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+            <div class="col-2">
+                <h3>Player Four</h3>
+                <input type="button" value="Pick Character" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+            <div class="col-2">
+                <h3>Player Five</h3>
+                <input type="button" value="Pick Character" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+        </div>
+  </div>
