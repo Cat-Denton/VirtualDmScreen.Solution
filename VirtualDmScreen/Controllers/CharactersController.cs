@@ -38,7 +38,6 @@ namespace VirtualDmScreen.Controllers
     }
 
     [HttpPost]
-    //Should pass in DiceRoll and Message classes?
     public async Task<ActionResult> Create(Character Characters)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -49,25 +48,10 @@ namespace VirtualDmScreen.Controllers
       return RedirectToAction("Index");
     }
 
-    //Do we want to see Messages and Dicerolls?
     public ActionResult Details(int id)
     {
       var thisCharacters = _db.Characters.FirstOrDefault(Characters => Characters.CharacterId == id);
       return View(thisCharacters);
-    }
-    
-    public ActionResult Edit(int id)
-    {
-      var thisCharacters = _db.Characters.FirstOrDefault(Characters => Characters.CharacterId == id);
-      return View(thisCharacters);
-    }
-
-    [HttpPost]
-    public ActionResult Edit(Character Characters)
-    {
-      _db.Entry(Characters).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)

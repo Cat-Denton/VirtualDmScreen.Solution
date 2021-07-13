@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtualDmScreen.Models;
 
 namespace VirtualDmScreen.Migrations
 {
     [DbContext(typeof(VirtualDmScreenContext))]
-    partial class VirtualDmScreenContextModelSnapshot : ModelSnapshot
+    [Migration("20210713040151_SeedDmChoice")]
+    partial class SeedDmChoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,15 +273,10 @@ namespace VirtualDmScreen.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DmImgSelectionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("DmTrackSelectionId")
                         .HasColumnType("int");
 
                     b.HasKey("DmChoiceId");
-
-                    b.HasIndex("DmImgSelectionId");
 
                     b.HasIndex("DmTrackSelectionId");
 
@@ -289,51 +286,7 @@ namespace VirtualDmScreen.Migrations
                         new
                         {
                             DmChoiceId = 1,
-                            DmImgSelectionId = 1,
                             DmTrackSelectionId = 1
-                        });
-                });
-
-            modelBuilder.Entity("VirtualDmScreen.Models.DmImgSelection", b =>
-                {
-                    b.Property<int>("DmImgSelectionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImgName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("ImgPath")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("DmImgSelectionId");
-
-                    b.ToTable("DmImgSelections");
-
-                    b.HasData(
-                        new
-                        {
-                            DmImgSelectionId = 1,
-                            ImgName = "Party of Adventurers",
-                            ImgPath = "/img/party.jpg"
-                        },
-                        new
-                        {
-                            DmImgSelectionId = 2,
-                            ImgName = "White Dragon",
-                            ImgPath = "/img/whitedragon.jpg"
-                        },
-                        new
-                        {
-                            DmImgSelectionId = 3,
-                            ImgName = "Red Dragon",
-                            ImgPath = "/img/reddragon.jpg"
-                        },
-                        new
-                        {
-                            DmImgSelectionId = 4,
-                            ImgName = "Fire Breathing Dragon",
-                            ImgPath = "/img/firebreath.jpg"
                         });
                 });
 
@@ -359,18 +312,6 @@ namespace VirtualDmScreen.Migrations
                             DmTrackSelectionId = 1,
                             SpotifyTrack = "7ob4BKZ9yFXI06HvQaUXvp",
                             TrackName = "Dragon Age"
-                        },
-                        new
-                        {
-                            DmTrackSelectionId = 2,
-                            SpotifyTrack = "2EelmLcDmP1h1BuRUu7h7W",
-                            TrackName = "City in the Clouds"
-                        },
-                        new
-                        {
-                            DmTrackSelectionId = 3,
-                            SpotifyTrack = "18O8Y4mZ2sNOBYBwBR1LVK",
-                            TrackName = "Willow's Theme"
                         });
                 });
 
@@ -406,14 +347,14 @@ namespace VirtualDmScreen.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "ec976d2a-96d5-485f-b2be-7f86c5187c48",
+                            ConcurrencyStamp = "6fe16174-2cb6-4cd9-a404-3fc34958fc76",
                             Name = "DM",
                             NormalizedName = "DM"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "20d0c3b3-8aa8-4583-8ca7-3012bfbb8bac",
+                            ConcurrencyStamp = "7ce638f7-3f60-4259-a10d-136d27b1a5ab",
                             Name = "Player",
                             NormalizedName = "PLAYER"
                         });
@@ -492,19 +433,11 @@ namespace VirtualDmScreen.Migrations
 
             modelBuilder.Entity("VirtualDmScreen.Models.DmChoice", b =>
                 {
-                    b.HasOne("VirtualDmScreen.Models.DmImgSelection", "DmImgSelection")
-                        .WithMany()
-                        .HasForeignKey("DmImgSelectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("VirtualDmScreen.Models.DmTrackSelection", "DmTrackSelection")
                         .WithMany()
                         .HasForeignKey("DmTrackSelectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("DmImgSelection");
 
                     b.Navigation("DmTrackSelection");
                 });
