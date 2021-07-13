@@ -68,6 +68,5 @@ namespace VirtualDmScreen.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
   }
 }

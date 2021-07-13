@@ -35,35 +35,53 @@ else
                 <p>Some text here!</p>
             </div>
         </div>
+    <div>
+        @* Empty Box *@
         <div class="row">
             <div class="col-2" id="emptyBox">
                   <p>@Html.ActionLink("Register/Login", "Index", "Account", null, new { id="OT", style = "color:red" })</p>
                   <p>@Html.ActionLink("Home", "Index", "Home")</p>
             </div>
+        @* Player One *@
             <div class="col-2" id="playerOne">
                 <h5>Player One</h5>
-                <input type="button" value="Pick Character" onclick= "location.href='@Url.Action("Index", "Home")'" />
-                <input type="button" value="Upload Portrait" />
+                <input type="button" id="upload" value="Upload Character" onclick="CreateCharacter()" />
+                <script>
+                    function CreateCharacter(element)
+                    {
+                        window.open('/Characters/Create', 'Characters', left=100,top=100,width=400,height=300,toolbar=0,resizable=0');
+                    }
+                </script>
             </div>
+        @* Player Two *@
             <div class="col-2">
                 <h5>Player Two</h5>
-                <input type="button" value="Pick Character" />
-                <input type="button" value="Upload Portrait" />
+                <input type="button" id="upload" value="Upload Character" />
+                <script>
+                    window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300,toolbar=1,resizable=0');
+                </script> 
             </div>
+        @* Player Three *@
             <div class="col-2">
                 <h5>Player Three</h5>
-                <input type="button" value="Pick Character" />
-                <input type="button" value="Upload Portrait" />
+                <a href='javascript:openwindow();'>Upload Character</a>
+                    <script>
+                        function openwindow()
+                        {
+                            window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400, height=300');
+                        }
+                    </script>            
             </div>
+        @* Player Four *@
             <div class="col-2">
                 <h5>Player Four</h5>
-                <input type="button" value="Pick Character" />
-                <input type="button" value="Upload Portrait" />
+                <input type="button" value="Upload Character" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400, height=300');" />
             </div>
+        @* Player Five *@
             <div class="col-2">
                 <h5>Player Five</h5>
-                <input type="button" value="Pick Character" />
-                <input type="button" value="Upload Portrait" />
+                <input type="button" value="Upload Character" />
             </div>
         </div>
+    </div>
   </div>
