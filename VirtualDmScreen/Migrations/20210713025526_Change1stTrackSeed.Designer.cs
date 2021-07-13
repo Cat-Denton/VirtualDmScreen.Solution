@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtualDmScreen.Models;
 
 namespace VirtualDmScreen.Migrations
 {
     [DbContext(typeof(VirtualDmScreenContext))]
-    partial class VirtualDmScreenContextModelSnapshot : ModelSnapshot
+    [Migration("20210713025526_Change1stTrackSeed")]
+    partial class Change1stTrackSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -265,29 +267,6 @@ namespace VirtualDmScreen.Migrations
                     b.ToTable("DiceRolls");
                 });
 
-            modelBuilder.Entity("VirtualDmScreen.Models.DmChoice", b =>
-                {
-                    b.Property<int>("DmChoiceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("DmTrackSelectionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DmChoiceId");
-
-                    b.HasIndex("DmTrackSelectionId");
-
-                    b.ToTable("DmChoices");
-
-                    b.HasData(
-                        new
-                        {
-                            DmChoiceId = 1,
-                            DmTrackSelectionId = 1
-                        });
-                });
-
             modelBuilder.Entity("VirtualDmScreen.Models.DmTrackSelection", b =>
                 {
                     b.Property<int>("DmTrackSelectionId")
@@ -302,7 +281,7 @@ namespace VirtualDmScreen.Migrations
 
                     b.HasKey("DmTrackSelectionId");
 
-                    b.ToTable("DmTrackSelections");
+                    b.ToTable("DmTrackSelection");
 
                     b.HasData(
                         new
@@ -310,18 +289,6 @@ namespace VirtualDmScreen.Migrations
                             DmTrackSelectionId = 1,
                             SpotifyTrack = "7ob4BKZ9yFXI06HvQaUXvp",
                             TrackName = "Dragon Age"
-                        },
-                        new
-                        {
-                            DmTrackSelectionId = 2,
-                            SpotifyTrack = "2EelmLcDmP1h1BuRUu7h7W",
-                            TrackName = "City in the Clouds"
-                        },
-                        new
-                        {
-                            DmTrackSelectionId = 3,
-                            SpotifyTrack = "18O8Y4mZ2sNOBYBwBR1LVK",
-                            TrackName = "Willow's Theme"
                         });
                 });
 
@@ -357,14 +324,14 @@ namespace VirtualDmScreen.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "14a4be72-d5ed-41c7-a4d8-1d5af90428d4",
+                            ConcurrencyStamp = "f211c219-22ea-45c2-b3d5-12b6c8df324a",
                             Name = "DM",
                             NormalizedName = "DM"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "d9035dbb-7381-496f-81d8-94570fe74e97",
+                            ConcurrencyStamp = "2ee3ad88-cd91-46e6-8551-1de319409b71",
                             Name = "Player",
                             NormalizedName = "PLAYER"
                         });
@@ -439,17 +406,6 @@ namespace VirtualDmScreen.Migrations
                         .IsRequired();
 
                     b.Navigation("Character");
-                });
-
-            modelBuilder.Entity("VirtualDmScreen.Models.DmChoice", b =>
-                {
-                    b.HasOne("VirtualDmScreen.Models.DmTrackSelection", "DmTrackSelection")
-                        .WithMany()
-                        .HasForeignKey("DmTrackSelectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DmTrackSelection");
                 });
 
             modelBuilder.Entity("VirtualDmScreen.Models.Message", b =>

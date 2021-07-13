@@ -2,7 +2,15 @@
 <h1> Welcome to Virtual Dm Screen </h1>
 
 @if (@User.IsInRole("DM"))
-{
+{   
+    @using (Html.BeginForm())
+    {
+        @* @Html.Hidden("dmTrackSelectionId", ) *@
+        @Html.DropDownList("DmTrackSelectionId")
+        <input type="submit" value="Select track">
+
+    }
+    <iframe src='https://open.spotify.com/embed/track/@ViewBag.SelectedTrack.SpotifyTrack' width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
  <select id="Status" name="Status" onchange="changeBackground(document.getElementsByTagName('BODY')[0], this);" class="form-control">
     <option style="background-image: url('/img/party.jpg');" value="party">Party of Adventurers</option>
     <option style="background-image: url('/img/reddragon.jpg');" value="redDragon">Red Dragon</option>

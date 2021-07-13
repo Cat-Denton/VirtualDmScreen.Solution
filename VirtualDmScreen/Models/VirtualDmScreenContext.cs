@@ -10,6 +10,8 @@ namespace VirtualDmScreen.Models
         public virtual DbSet<DiceRoll> DiceRolls { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Character> Characters { get; set; }
+        public virtual DbSet<DmTrackSelection> DmTrackSelections { get; set; }
+        public virtual DbSet<DmChoice> DmChoices { get; set; }
 
         public VirtualDmScreenContext(DbContextOptions options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -35,6 +37,20 @@ namespace VirtualDmScreen.Models
                     NormalizedName = "PLAYER"
                 },
             });
+            builder.Entity<DmTrackSelection>()
+            .HasData(
+                new DmTrackSelection { DmTrackSelectionId = 1, SpotifyTrack = "7ob4BKZ9yFXI06HvQaUXvp", TrackName = "Dragon Age"},
+                new DmTrackSelection { DmTrackSelectionId = 2, SpotifyTrack = "2EelmLcDmP1h1BuRUu7h7W", TrackName = "City in the Clouds"},
+                new DmTrackSelection { DmTrackSelectionId = 3, SpotifyTrack = "18O8Y4mZ2sNOBYBwBR1LVK", TrackName = "Willow's Theme"}
+                
+            );
+            builder.Entity<DmChoice>()
+            .HasData(
+                new DmChoice { DmChoiceId = 1, DmTrackSelectionId = 1}   
+            );
         }
     }
 }
+
+// <iframe src="https://open.spotify.com/embed/track/2EelmLcDmP1h1BuRUu7h7W" width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+// <iframe src="https://open.spotify.com/embed/track/18O8Y4mZ2sNOBYBwBR1LVK" width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
