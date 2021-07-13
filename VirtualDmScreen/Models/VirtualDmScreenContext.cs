@@ -11,6 +11,7 @@ namespace VirtualDmScreen.Models
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Character> Characters { get; set; }
         public virtual DbSet<DmTrackSelection> DmTrackSelections { get; set; }
+        public virtual DbSet<DmImgSelection> DmImgSelections { get; set; }
         public virtual DbSet<DmChoice> DmChoices { get; set; }
 
         public VirtualDmScreenContext(DbContextOptions options) : base(options) { }
@@ -44,10 +45,18 @@ namespace VirtualDmScreen.Models
                 new DmTrackSelection { DmTrackSelectionId = 3, SpotifyTrack = "18O8Y4mZ2sNOBYBwBR1LVK", TrackName = "Willow's Theme"}
                 
             );
+            builder.Entity<DmImgSelection>()
+            .HasData(
+                new DmImgSelection { DmImgSelectionId = 1, ImgName = "Party of Adventurers", ImgPath = "/img/party.jpg"},
+                new DmImgSelection { DmImgSelectionId = 2, ImgName = "White Dragon", ImgPath = "/img/whitedragon.jpg"},
+                new DmImgSelection { DmImgSelectionId = 3, ImgName = "Red Dragon", ImgPath = "/img/reddragon.jpg"},
+                new DmImgSelection { DmImgSelectionId = 4, ImgName = "Fire Breathing Dragon", ImgPath = "/img/firebreath.jpg"}
+            );
             builder.Entity<DmChoice>()
             .HasData(
-                new DmChoice { DmChoiceId = 1, DmTrackSelectionId = 1}   
+                new DmChoice { DmChoiceId = 1, DmTrackSelectionId = 1, DmImgSelectionId = 1}   
             );
+            
         }
     }
 }

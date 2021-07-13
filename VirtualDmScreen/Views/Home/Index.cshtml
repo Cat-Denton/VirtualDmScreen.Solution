@@ -1,32 +1,22 @@
 <link rel="stylesheet" href="~/css/styles.css" />
 <h1> Welcome to Virtual Dm Screen </h1>
+<body style="background-image: url('@ViewBag.SelectedImg.ImgPath');">
+<iframe src='https://open.spotify.com/embed/track/@ViewBag.SelectedTrack.SpotifyTrack' width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
 @if (@User.IsInRole("DM"))
 {   
     @using (Html.BeginForm())
     {
-        @* @Html.Hidden("dmTrackSelectionId", ) *@
         @Html.DropDownList("DmTrackSelectionId")
-        <input type="submit" value="Select track">
+        @Html.DropDownList("DmImgSelectionId")
+
+        <input type="submit" value="Input Selections">
 
     }
-    <iframe src='https://open.spotify.com/embed/track/@ViewBag.SelectedTrack.SpotifyTrack' width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
- <select id="Status" name="Status" onchange="changeBackground(document.getElementsByTagName('BODY')[0], this);" class="form-control">
-    <option style="background-image: url('/img/party.jpg');" value="party">Party of Adventurers</option>
-    <option style="background-image: url('/img/reddragon.jpg');" value="redDragon">Red Dragon</option>
-    <option style="background-image: url('/img/whitedragon.jpg');" value="whiteDragon">White Dragon</option>
-    <option style="background-image: url('/img/firebreath.jpg');" value="fireBreath">FireBreath</option>
-  </select>
-  <script>
-    function changeBackground(body, selectElement) {
-      selectElement.options[selectElement.selectedIndex].style.backgroundImage
-      body.setAttribute('style', 'background-image: ' + selectElement.options[selectElement.selectedIndex].style.backgroundImage + ';');
-    }
-  </script>
 }
 else
 {
-    <p>Blank's Screen</p>
+    <p>Your Screen</p>
 }
   <hr>
 
@@ -75,3 +65,5 @@ else
             </div>
         </div>
   </div>
+  </body>
+  

@@ -27,18 +27,19 @@ namespace VirtualDmScreen.Controllers
         {
             List<DmTrackSelection> tracks = _db.DmTrackSelections.ToList();
             ViewBag.DmTrackSelectionId = new SelectList(_db.DmTrackSelections, "DmTrackSelectionId", "TrackName");
-            var selectedTrack = _db.DmChoices.FirstOrDefault(selection => selection.DmChoiceId == 1);
-            DmTrackSelection dmTrackSelection = selectedTrack.DmTrackSelection;
+            ViewBag.DmImgSelectionId = new SelectList(_db.DmImgSelections, "DmImgSelectionId", "ImgName");
+            var dmSelections = _db.DmChoices.FirstOrDefault(selection => selection.DmChoiceId == 1);
+            DmTrackSelection dmTrackSelection = dmSelections.DmTrackSelection;
+            DmImgSelection dmImgSelection = dmSelections.DmImgSelection;
             ViewBag.SelectedTrack = dmTrackSelection;
+            ViewBag.SelectedImg = dmImgSelection;
             return View();
         }
+
         [HttpPost]
-        public ActionResult Index(int dmTrackSelectionId)
+        public ActionResult Index(int dmTrackSelectionId, int dmImgSelectionId)
         {
-            Console.WriteLine("********************************************************************" + dmTrackSelectionId);
-            DmChoice newDmChoice = new DmChoice {DmChoiceId = 1, DmTrackSelectionId = dmTrackSelectionId};
-            // var choice = _db.DmChoices.FirstOrDefault(entry => entry.DmChoiceId == 1);
-            // choice.DmTrackSelectionId = selection.DmTrackSelectionId;
+            DmChoice newDmChoice = new DmChoice {DmChoiceId = 1, DmTrackSelectionId = dmTrackSelectionId, DmImgSelectionId = dmImgSelectionId};
             _db.Entry(newDmChoice).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");

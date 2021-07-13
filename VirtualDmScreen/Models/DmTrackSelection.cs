@@ -1,6 +1,3 @@
-using System;
-using Microsoft.EntityFrameworkCore;
-
 namespace VirtualDmScreen.Models
 {
     public class DmTrackSelection
