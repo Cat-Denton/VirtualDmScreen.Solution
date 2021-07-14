@@ -58,14 +58,14 @@ namespace VirtualDmScreen.Controllers
     
     public ActionResult Edit(int id)
     {
-      var thisCharacters = _db.Characters.FirstOrDefault(Characters => Characters.CharacterId == id);
-      return View(thisCharacters);
+      var thisCharacter = _db.Characters.FirstOrDefault(Character => Character.CharacterId == id);
+      return View(thisCharacter);
     }
 
     [HttpPost]
-    public ActionResult Edit(Character Characters)
+    public ActionResult Edit(Character Character)
     {
-      _db.Entry(Characters).State = EntityState.Modified;
+      _db.Entry(Character).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

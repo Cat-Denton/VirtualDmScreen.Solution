@@ -33,13 +33,14 @@ namespace VirtualDmScreen.Controllers
     //Should pass in DiceRoll and Message classes?
     public async Task<ActionResult> Create(Message message)
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      message.DateTimeStamp = DateTime.Now;
-      message.Character = new Character() { Name = "Jon Snow"};
-      _db.Messages.Add(message);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        message.DateTimeStamp = DateTime.Now;
+        //   message.Character = new Character() { Name = "Jon Snow"};
+        message.Character = currentUser.Character;
+        _db.Messages.Add(message);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
   }
 }

@@ -40,6 +40,11 @@ namespace VirtualDmScreen.Controllers
         var role = await _roleManager.FindByIdAsync(roleId);
         IdentityResult userResult = await _userManager.CreateAsync(user, model.Password);
         IdentityResult roleResult = await _userManager.AddToRoleAsync(user, role.Name);
+
+        Character defaultCharacter = new Character() { Name = user.UserName, ApplicationUserId = user.Id };
+        _db.Characters.Add(defaultCharacter);
+        _db.SaveChanges();
+
         if (userResult.Succeeded && roleResult.Succeeded)
         {
             return RedirectToAction("Index");
