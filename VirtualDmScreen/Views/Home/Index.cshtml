@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="~/css/styles.css" />
-<h1> Welcome to Virtual Dm Screen </h1>
-<body style="background-image: url('@ViewBag.SelectedImg.ImgPath');">
+<h1>Welcome to Virtual Dm Screen</h1>
+<body style="background-image: url('@ViewBag.SelectedImg.ImgPath');background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
 <iframe src='https://open.spotify.com/embed/track/@ViewBag.SelectedTrack.SpotifyTrack' width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
 @using VirtualDmScreen.Models
@@ -24,13 +24,13 @@ else
 
 <div class="container">
         <div class="row">
-            <div class="col-3">
+            <div class="col-3" id="chatbox">
                 <h5>Chat Box</h5>
                 <p>Some text here!</p>
             </div>
             <div class="col-6">
             </div>
-            <div class="col-3">
+            <div class="col-3" id="dicebox">
                 <h5>Dice Box</h5>
                 <p>Some text here!</p>
             </div>
@@ -42,45 +42,34 @@ else
                   <p>@Html.ActionLink("Register/Login", "Index", "Account", null, new { id="OT", style = "color:black;text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;" })</p>
                   <p>@Html.ActionLink("Home", "Index", "Home")</p>
             </div>
-        @* Player One *@
-            <div class="col-2" id="playerOne">
-                <h5>Player One</h5>
-                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
-                <input type="button" value="Load Image" id="image1" onclick="loadImage1(this);" class="form-control" >
-                    <script>
-                        function loadImage1(element)
-                        {
-                           backgroundImage: url('${Character.ImageUrl});
-                           background-repeat: no-repeat;
-                        }
-                    </script>
-            </div>
-        @* Player Two *@
-            <div class="col-2" id="playerTwo">
-                <h5>Player Two</h5>
-                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
-            </div>
-        @* Player Three *@
-            <div class="col-2" id="playerThree">
-                <h5>Player Three</h5>
-                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />       
-            </div>
-        @* Player Four *@
-            <div class="col-2" id="playerFour">
-                <h5>Player Four</h5>
-                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
-            </div>
-        @* Player Five *@
-            <div class="col-2" id="playerFive">
-                <h5>Player Five</h5>
-                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
-            </div>
         </div>
-<<<<<<< HEAD
-  </div>
-  </body>
-  
-=======
     </div>
-  </div>
->>>>>>> pagelayout
+</div>
+
+
+<div class="container">
+    <div class="row">
+        @* Player One *@
+        <div class="col-3">
+            <h5>Player One</h5>
+        </div>
+        @* Player Two *@
+        <div class="col-3" id="playerTwo">
+            <h5>Player Two</h5>
+            <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
+        </div>
+        @* Player Three *@
+        <div class="col-3" id="playerThree">
+            <h5>Player Three</h5>
+            <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />       
+        </div>
+        @* Player Four *@
+        <div class="col-3" id="playerFour">
+            <h5>Player Four</h5>
+            <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
+        </div>
+    </div>
+</div>
+</body>
+
+  
