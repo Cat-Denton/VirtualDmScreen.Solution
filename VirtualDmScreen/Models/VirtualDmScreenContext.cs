@@ -51,7 +51,8 @@ namespace VirtualDmScreen.Models
                 new DmImgSelection { DmImgSelectionId = 1, ImgName = "Party of Adventurers", ImgPath = "/img/party.jpg"},
                 new DmImgSelection { DmImgSelectionId = 2, ImgName = "White Dragon", ImgPath = "/img/whitedragon.jpg"},
                 new DmImgSelection { DmImgSelectionId = 3, ImgName = "Red Dragon", ImgPath = "/img/reddragon.jpg"},
-                new DmImgSelection { DmImgSelectionId = 4, ImgName = "Fire Breathing Dragon", ImgPath = "/img/firebreath.jpg"}
+                new DmImgSelection { DmImgSelectionId = 4, ImgName = "Fire Breathing Dragon", ImgPath = "/img/firebreath.jpg"},
+                new DmImgSelection { DmImgSelectionId = 5, ImgName = "Age of Sigmar", ImgPath = "/img/AgeOfSigmar.jpg" }
             );
             builder.Entity<DmChoice>()
             .HasData(
