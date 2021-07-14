@@ -29,9 +29,9 @@ else
                 @{ Html.RenderPartial("~/Views/Messages/Index.cshtml", ViewBag.Messages as List<Message>); }
                 @{ Html.RenderPartial("~/Views/Messages/Create.cshtml", new Message()); }
             </div>
-            <div class="col-6">
+            <div class="col-5">
             </div>
-            <div class="col-3" style="overflow:auto" id="dicebox">
+            <div class="col-4" style="overflow:auto" id="dicebox">
                 <h5>Dice Box</h5>
                 <p>
                     @{ Html.RenderPartial("~/Views/DiceRolls/Index.cshtml", ViewBag.DiceRolls as List<DiceRoll>); }
