@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Messages";
+}
+
+@using System.Collections.Generic;
+@using VirtualDmScreen.Models;
+@model IEnumerable<VirtualDmScreen.Models.Message>;
+
+@if (User.Identity.IsAuthenticated) 
+{
+    <h1>Hello, @User.Identity.Name!</h1>
+}
+<p>This page exists to test a chat box.</p>
+
+@foreach (Message message in Model)
+{
+    <p>
+        <i>@message.DateTimeStamp</i>
+        <br>
+        <b>@message.Character.Name:</b> @message.Text
+    </p>
+}
+
+@{ Html.RenderPartial("Create", new Message()); }

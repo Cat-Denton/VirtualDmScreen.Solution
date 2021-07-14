@@ -20,6 +20,10 @@ namespace VirtualDmScreen.Models
         protected override void OnModelCreating(ModelBuilder builder) 
         {
             base.OnModelCreating(builder);
+            // builder.Entity<ApplicationUser>()
+            //     .HasOne(user => user.SelectedCharacter)
+            //     .WithOne(character => character.User);
+
             builder.Entity<ApplicationRole>().HasData(new List<ApplicationRole>
             {
                 new ApplicationRole
