@@ -100,3 +100,7 @@ body {
 select {
   width: 25%;
 }
+
+h1 {
+  text-shadow: white;
+}

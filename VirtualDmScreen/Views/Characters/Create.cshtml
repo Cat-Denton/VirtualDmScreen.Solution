@@ -5,14 +5,32 @@
 @model VirtualDmScreen.Models.Character
 @using VirtualDmScreen.ViewModels
 
-<h2>Create a character:</h2>
-@using (Html.BeginForm())
-{
-  @Html.LabelFor(user => user.Name)
-  @Html.TextBoxFor(user => user.Name)
+<div class="container">
+  <div class="col-2" id="createBox">
+      <h2>Create a character:</h2>
+      @using (Html.BeginForm())
+      {
+        @Html.LabelFor(user => user.Name)
+        @Html.TextBoxFor(user => user.Name)
 
-  @Html.LabelFor(user => user.ImageUrl)
-  @Html.TextBoxFor(user => user.ImageUrl)
+        @Html.LabelFor(user => user.ImageUrl)
+        @Html.TextBoxFor(user => user.ImageUrl)
 
-  <input type="submit" value="Add new character" />
-}
+        <input type="submit" value="Add new character" />
+      }
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="col-2" id="selectBox">
+    @using (Html.BeginForm())
+    {
+      @Html.HiddenFor(model => model.CharacterId)
+
+      @Html.Label("Select a Character")
+      @Html.DropDownList("Name")
+
+      <input type="submit" value="Select Character" />
+    }
+  </div>
+</div>

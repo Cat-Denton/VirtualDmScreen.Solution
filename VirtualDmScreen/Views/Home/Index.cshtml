@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="~/css/styles.css" />
 <h1> Welcome to Virtual Dm Screen </h1>
 
+@using VirtualDmScreen.Models
+
 @if (@User.IsInRole("DM"))
 {
  <select id="Status" name="Status" onchange="changeBackground(document.getElementsByTagName('BODY')[0], this);" class="form-control">
@@ -39,48 +41,41 @@ else
         @* Empty Box *@
         <div class="row">
             <div class="col-2" id="emptyBox">
-                  <p>@Html.ActionLink("Register/Login", "Index", "Account", null, new { id="OT", style = "color:red" })</p>
+                  <p>@Html.ActionLink("Register/Login", "Index", "Account", null, new { id="OT", style = "color:black;text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;" })</p>
                   <p>@Html.ActionLink("Home", "Index", "Home")</p>
             </div>
         @* Player One *@
             <div class="col-2" id="playerOne">
                 <h5>Player One</h5>
-                <input type="button" id="upload" value="Upload Character" onclick="CreateCharacter()" />
-                <script>
-                    function CreateCharacter(element)
-                    {
-                        window.open('/Characters/Create', 'Characters', left=100,top=100,width=400,height=300,toolbar=0,resizable=0');
-                    }
-                </script>
+                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
+                <input type="button" value="Load Image" id="image1" onclick="loadImage1(this);" class="form-control" >
+                    <script>
+                        function loadImage1(element)
+                        {
+                           backgroundImage: url('${Character.ImageUrl});
+                           background-repeat: no-repeat;
+                        }
+                    </script>
             </div>
         @* Player Two *@
-            <div class="col-2">
+            <div class="col-2" id="playerTwo">
                 <h5>Player Two</h5>
-                <input type="button" id="upload" value="Upload Character" />
-                <script>
-                    window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300,toolbar=1,resizable=0');
-                </script> 
+                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
             </div>
         @* Player Three *@
-            <div class="col-2">
+            <div class="col-2" id="playerThree">
                 <h5>Player Three</h5>
-                <a href='javascript:openwindow();'>Upload Character</a>
-                    <script>
-                        function openwindow()
-                        {
-                            window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400, height=300');
-                        }
-                    </script>            
+                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />       
             </div>
         @* Player Four *@
-            <div class="col-2">
+            <div class="col-2" id="playerFour">
                 <h5>Player Four</h5>
-                <input type="button" value="Upload Character" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400, height=300');" />
+                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
             </div>
         @* Player Five *@
-            <div class="col-2">
+            <div class="col-2" id="playerFive">
                 <h5>Player Five</h5>
-                <input type="button" value="Upload Character" />
+                <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
             </div>
         </div>
     </div>

@@ -34,6 +34,7 @@ namespace VirtualDmScreen.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.Name = new SelectList(_db.Characters, "CharacterId", "Name");
       return View();
     }
 
