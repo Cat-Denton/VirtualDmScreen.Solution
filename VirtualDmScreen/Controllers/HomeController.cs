@@ -42,6 +42,8 @@ namespace VirtualDmScreen.Controllers
 
             // Character model = currentUser.Character;
             // Console.WriteLine("************************************" + currentUser.Character.Name + currentUser.Character.BoxId);
+            ViewBag.Messages = _db.Messages.ToList();
+            ViewBag.DiceRolls = _db.DiceRolls.ToList();
             return View();
         }
 
@@ -53,8 +55,6 @@ namespace VirtualDmScreen.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        [HttpPost]
         public ActionResult EditCharacter(Character character, int boxId, int characterId, int userId)
             {
         //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -69,10 +69,18 @@ namespace VirtualDmScreen.Controllers
             _db.Entry(character).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
+
+        public async Task<ActionResult> CreateRoll(DiceRoll diceRoll)
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        diceRoll.RollDice();
+        diceRoll.DateTimeStamp = DateTime.Now;
+        diceRoll.Character = currentUser.Character;
+        _db.DiceRolls.Add(diceRoll);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
         }
-        public IActionResult Privacy()
         {
             return View();
-        }
     }
 }

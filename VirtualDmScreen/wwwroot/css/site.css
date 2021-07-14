@@ -86,16 +86,30 @@ body {
 
 #chatbox {
   border: 1px solid black;
-  height: 350px;
+  height: 400px;
   background-color: white;
   opacity: 0.5;
 }
 
+#chatbox p {
+    font-size: 14px;
+    text-align: left;
+  }
+
 #dicebox {
   border: 1px solid black;
-  height: 350px;
+  height: 400px;
   background-color: white;
-  opacity: 0.5;
+  opacity: 0.7;
+}
+
+#dicebox p {
+  font-size: 12px;
+  text-align: left;
+}
+
+#dicerolled {
+  font-size: 18px;
 }
 
 .col-6 {

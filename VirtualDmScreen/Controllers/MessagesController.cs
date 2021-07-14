@@ -24,11 +24,6 @@ namespace VirtualDmScreen.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
-    {
-        return View(_db.Messages.ToList());
-    }
-
     [HttpPost]
     //Should pass in DiceRoll and Message classes?
     public async Task<ActionResult> Create(Message message)
@@ -40,7 +35,7 @@ namespace VirtualDmScreen.Controllers
         message.Character = currentUser.Character;
         _db.Messages.Add(message);
         _db.SaveChanges();
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home");
     }
   }
 }

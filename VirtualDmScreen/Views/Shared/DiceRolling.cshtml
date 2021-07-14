@@ -1,0 +1,16 @@
+@using VirtualDmScreen.Models
+@model VirtualDmScreen.Models.DiceRoll
+@using System.Linq;
+
+<h3>Roll them bones</h3>
+
+@using (Html.BeginForm("Create", "DiceRolls"))
+{
+  @Html.Label("How many dice are you rolling?")
+  @Html.TextBoxFor(model => model.NumberOfDice)
+
+  @Html.Label("How many sides does each die have? (they must all be the same)")
+  @Html.TextBoxFor(model => model.NumberOfSides)
+
+  <input type = "submit" value="Roll dem bones" class="btn btn-default" />
+}

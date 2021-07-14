@@ -1,14 +1,15 @@
 @model VirtualDmScreen.Models.DiceRoll
 
-<h3>Roll them bones</h3>
+<h3 style="text-align:left;">Roll them bones</h3>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "DiceRolls"))
 {
-  @Html.Label("How many dice are you rolling?")
-  @Html.TextBoxFor(model => model.NumberOfDice)
+  <p style="text-align:left">@Html.Label("How many dice are you rolling?")
+  @Html.TextBoxFor(model => model.NumberOfDice, new {style = "width: 30px;"})<br>
 
   @Html.Label("How many sides does each die have? (they must all be the same)")
-  @Html.TextBoxFor(model => model.NumberOfSides)
+  @Html.TextBoxFor(model => model.NumberOfSides, new {style = "width: 30px;"})<br>
 
-  <input type = "submit" value="Roll dem bones" class="btn btn-default" />
+  <input type = "submit" value="Roll dem bones" class="btn btn-default" style="text-align:center;color:blue;"/>
+  </p>
 }
