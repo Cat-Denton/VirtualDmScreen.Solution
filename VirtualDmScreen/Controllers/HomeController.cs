@@ -25,9 +25,25 @@ namespace VirtualDmScreen.Controllers
 
         public IActionResult Index()
         {
+            List<DmTrackSelection> tracks = _db.DmTrackSelections.ToList();
+            ViewBag.DmTrackSelectionId = new SelectList(_db.DmTrackSelections, "DmTrackSelectionId", "TrackName");
+            ViewBag.DmImgSelectionId = new SelectList(_db.DmImgSelections, "DmImgSelectionId", "ImgName");
+            var dmSelections = _db.DmChoices.FirstOrDefault(selection => selection.DmChoiceId == 1);
+            DmTrackSelection dmTrackSelection = dmSelections.DmTrackSelection;
+            DmImgSelection dmImgSelection = dmSelections.DmImgSelection;
+            ViewBag.SelectedTrack = dmTrackSelection;
+            ViewBag.SelectedImg = dmImgSelection;
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Index(int dmTrackSelectionId, int dmImgSelectionId)
+        {
+            DmChoice newDmChoice = new DmChoice {DmChoiceId = 1, DmTrackSelectionId = dmTrackSelectionId, DmImgSelectionId = dmImgSelectionId};
+            _db.Entry(newDmChoice).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         public IActionResult Privacy()
         {
             return View();
