@@ -34,6 +34,7 @@ namespace VirtualDmScreen.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.Name = new SelectList(_db.Characters, "CharacterId", "Name");
       return View();
     }
 
@@ -68,6 +69,5 @@ namespace VirtualDmScreen.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
   }
 }
