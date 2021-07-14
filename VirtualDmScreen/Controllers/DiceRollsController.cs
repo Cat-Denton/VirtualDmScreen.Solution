@@ -35,12 +35,13 @@ namespace VirtualDmScreen.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(DiceRoll diceRoll)
+    public async Task<ActionResult> Create(DiceRoll diceRoll)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       diceRoll.RollDice();
       diceRoll.DateTimeStamp = DateTime.Now;
-      Console.WriteLine(diceRoll.Result + " " + diceRoll.DateTimeStamp);
-      diceRoll.CharacterId = 1;
+      diceRoll.Character = currentUser.Character;
       _db.DiceRolls.Add(diceRoll);
       _db.SaveChanges();
       return RedirectToAction("Index");
