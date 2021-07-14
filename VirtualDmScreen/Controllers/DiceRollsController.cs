@@ -25,12 +25,12 @@ namespace VirtualDmScreen.Controllers
 
     public ActionResult Index()
     {
-      ViewBag.diceRolls = _db.DiceRolls.ToList();
       return View();
     }
 
     public ActionResult Create()
     {
+      ViewBag.diceRolls = _db.DiceRolls.ToList();
       return View();
     }
 
@@ -44,8 +44,7 @@ namespace VirtualDmScreen.Controllers
       diceRoll.Character = currentUser.Character;
       _db.DiceRolls.Add(diceRoll);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", "Home");
     }
-
   }
 }

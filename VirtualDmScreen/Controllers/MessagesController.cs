@@ -24,10 +24,10 @@ namespace VirtualDmScreen.Controllers
       _db = db;
     }
 
-    public async Task<ActionResult> Index()
-    {
-        return View(_db.Messages.ToList());
-    }
+    // public async Task<ActionResult> Index()
+    // {
+    //     return View(_db.Messages.ToList());
+    // }
 
     [HttpPost]
     //Should pass in DiceRoll and Message classes?
