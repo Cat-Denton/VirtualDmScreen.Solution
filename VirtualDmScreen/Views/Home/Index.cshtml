@@ -4,6 +4,7 @@
 <iframe src='https://open.spotify.com/embed/track/@ViewBag.SelectedTrack.SpotifyTrack' width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
 @using VirtualDmScreen.Models
+@model VirtualDmScreen.Models.Character
 
 @if (@User.IsInRole("DM"))
 {   
@@ -52,21 +53,103 @@ else
         @* Player One *@
         <div class="col-3">
             <h5>Player One</h5>
+                @if(@Model.BoxId == 1)
+                { 
+                    @Model.Name
+                    <br>
+                    <img src="@Model.ImageUrl">
+                } 
+                else
+                { 
+                    @Html.BeginForm("EditCharacter","Home", new {boxId = 1})
+                    {
+                        @Html.HiddenFor(model => model.CharacterId)
+                        @Html.HiddenFor(model => model.ApplicationUserId)
+                        @Html.LabelFor(model => model.Name)
+                        @Html.EditorFor(model => model.Name)
+                        <br>
+                        @Html.LabelFor(model => model.ImageUrl)
+                        @Html.EditorFor(model => model.ImageUrl)
+                        <br>
+                        <input type="submit" value="Save" />
+                    }
+                 };             
+            
         </div>
         @* Player Two *@
         <div class="col-3" id="playerTwo">
             <h5>Player Two</h5>
-            <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
+            @if(@Model.BoxId == 2)
+            { 
+                @Model.Name
+                <br>
+                <img src="@Model.ImageUrl">
+            } 
+            else
+            { 
+                @Html.BeginForm("EditCharacter","Home", new {boxId = 2})
+                {
+                    @Html.HiddenFor(model => model.CharacterId)
+                    @Html.HiddenFor(model => model.ApplicationUserId)
+                    @Html.LabelFor(model => model.Name)
+                    @Html.EditorFor(model => model.Name)
+                    <br>
+                    @Html.LabelFor(model => model.ImageUrl)
+                    @Html.EditorFor(model => model.ImageUrl)
+                    <br>
+                    <input type="submit" value="Save" />
+                }
+            }
         </div>
         @* Player Three *@
         <div class="col-3" id="playerThree">
             <h5>Player Three</h5>
-            <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />       
+            @if(@Model.BoxId == 3)
+            { 
+                @Model.Name
+                <br>
+                <img src="@Model.ImageUrl">
+            } 
+            else
+            { 
+                @Html.BeginForm("EditCharacter","Home", new {boxId = 3})
+                {
+                    @Html.HiddenFor(model => model.CharacterId)
+                    @Html.HiddenFor(model => model.ApplicationUserId)
+                    @Html.LabelFor(model => model.Name)
+                    @Html.EditorFor(model => model.Name)
+                    <br>
+                    @Html.LabelFor(model => model.ImageUrl)
+                    @Html.EditorFor(model => model.ImageUrl)
+                    <br>
+                    <input type="submit" value="Save" />
+                }
+            }
         </div>
         @* Player Four *@
         <div class="col-3" id="playerFour">
             <h5>Player Four</h5>
-            <input type="button" value="Character Select" onclick="window.open('/Characters/Create', 'Characters', 'left=100,top=100,width=400,height=300');" />
+            @if(@Model.BoxId == 4)
+            { 
+                @Model.Name
+                <br>
+                <img src="@Model.ImageUrl">
+            } 
+            else
+            { 
+                @Html.BeginForm("EditCharacter","Home", new {boxId = 4})
+                {
+                    @Html.HiddenFor(model => model.CharacterId)
+                    @Html.HiddenFor(model => model.ApplicationUserId)
+                    @Html.LabelFor(model => model.Name)
+                    @Html.EditorFor(model => model.Name)
+                    <br>
+                    @Html.LabelFor(model => model.ImageUrl)
+                    @Html.EditorFor(model => model.ImageUrl)
+                    <br>
+                    <input type="submit" value="Save" />
+                }
+            }
         </div>
     </div>
 </div>

@@ -23,17 +23,23 @@ namespace VirtualDmScreen.Controllers
         _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             List<DmTrackSelection> tracks = _db.DmTrackSelections.ToList();
             ViewBag.DmTrackSelectionId = new SelectList(_db.DmTrackSelections, "DmTrackSelectionId", "TrackName");
             ViewBag.DmImgSelectionId = new SelectList(_db.DmImgSelections, "DmImgSelectionId", "ImgName");
+            
             var dmSelections = _db.DmChoices.FirstOrDefault(selection => selection.DmChoiceId == 1);
             DmTrackSelection dmTrackSelection = dmSelections.DmTrackSelection;
             DmImgSelection dmImgSelection = dmSelections.DmImgSelection;
             ViewBag.SelectedTrack = dmTrackSelection;
             ViewBag.SelectedImg = dmImgSelection;
-            return View();
+            
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            Character model = currentUser.Character;
+            Console.WriteLine("************************************" + currentUser.Character.Name + currentUser.Character.BoxId);
+            return View(model);
         }
 
         [HttpPost]
@@ -41,6 +47,18 @@ namespace VirtualDmScreen.Controllers
         {
             DmChoice newDmChoice = new DmChoice {DmChoiceId = 1, DmTrackSelectionId = dmTrackSelectionId, DmImgSelectionId = dmImgSelectionId};
             _db.Entry(newDmChoice).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult EditCharacter(Character character, int boxId)
+            {
+        //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //     var thisCharacter = _db.Characters.FirstOrDefault(Character => Character.ApplicationUserId == userId);
+            character.BoxId = boxId;
+            Console.WriteLine(boxId);
+            _db.Entry(character).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

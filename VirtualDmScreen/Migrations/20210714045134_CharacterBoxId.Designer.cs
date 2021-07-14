@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtualDmScreen.Models;
 
 namespace VirtualDmScreen.Migrations
 {
     [DbContext(typeof(VirtualDmScreenContext))]
-    partial class VirtualDmScreenContextModelSnapshot : ModelSnapshot
+    [Migration("20210714045134_CharacterBoxId")]
+    partial class CharacterBoxId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -416,14 +418,14 @@ namespace VirtualDmScreen.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "0c005313-c8cf-4151-95a9-6b70ca765187",
+                            ConcurrencyStamp = "3aa7ac7b-3b59-4345-8035-d16e13c34cf7",
                             Name = "DM",
                             NormalizedName = "DM"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "c0de3de6-7809-4fe7-b3e0-cb0a669c8817",
+                            ConcurrencyStamp = "6dc36bd4-d5a8-4551-b4e9-caca51e9159b",
                             Name = "Player",
                             NormalizedName = "PLAYER"
                         });

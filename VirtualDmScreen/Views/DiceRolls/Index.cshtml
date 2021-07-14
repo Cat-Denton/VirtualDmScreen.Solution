@@ -14,7 +14,7 @@
     }
 }
 
-@using (Html.BeginForm("Create","DiceRolls"))
+@* @using (Html.BeginForm("Create","DiceRolls"))
 {
   @Html.Label("How many dice are you rolling?")
   @Html.TextBoxFor(model => model.NumberOfDice)
@@ -23,6 +23,6 @@
   @Html.TextBoxFor(model => model.NumberOfSides)
 
   <input type = "submit" value="Roll dem bones" class="btn btn-default" />
-}
+} *@
 
-@Html.ActionLink("Roll some dice", "Create")
+@{ Html.RenderPartial("Create", new DiceRoll()); }

@@ -24,7 +24,7 @@ namespace VirtualDmScreen.Controllers
       _db = db;
     }
 
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
         return View(_db.Messages.ToList());
     }

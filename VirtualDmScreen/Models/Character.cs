@@ -10,6 +10,7 @@ namespace VirtualDmScreen.Models
     public string ApplicationUserId { get; set; }
     public string Name { get; set; }
     public string ImageUrl { get; set; }
+    public int BoxId { get; set; } = 0;
     public virtual ApplicationUser User { get; set; }
     public virtual ICollection<Message> Messages { get; set; }
     public virtual ICollection<DiceRoll> DiceRolls { get; set; }
