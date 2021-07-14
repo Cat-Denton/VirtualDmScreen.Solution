@@ -6,10 +6,11 @@
 {
   @foreach (DiceRoll roll in Model)
     {
-      <p>
+      <p style="text-align:left;">
         <i>@roll.DateTimeStamp</i>
         <br>
-        <b>@roll.Character.Name</b> rolled @roll.NumberOfDice @roll.NumberOfSides-sided dice resulting in @roll.Result
+        <b>@roll.Character.Name</b> rolled @roll.NumberOfDice @roll.NumberOfSides-sided dice resulting in:   <span id="dicerolled"> @roll.Result </span>
+        <hr style="height:1px;color:black;background-color:black">
       </p>
     }
 }
