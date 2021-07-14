@@ -40,7 +40,7 @@ namespace VirtualDmScreen.Controllers
         message.Character = currentUser.Character;
         _db.Messages.Add(message);
         _db.SaveChanges();
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home");
     }
   }
 }

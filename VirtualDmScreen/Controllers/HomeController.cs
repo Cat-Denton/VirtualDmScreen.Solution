@@ -33,6 +33,7 @@ namespace VirtualDmScreen.Controllers
             DmImgSelection dmImgSelection = dmSelections.DmImgSelection;
             ViewBag.SelectedTrack = dmTrackSelection;
             ViewBag.SelectedImg = dmImgSelection;
+            ViewBag.Messages = _db.Messages.ToList();
             return View();
         }
 
