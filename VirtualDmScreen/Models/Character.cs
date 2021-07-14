@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VirtualDmScreen.Models
 {
   public class Character
   {
     public int CharacterId { get; set; }
+    [ForeignKey("ApplicationUser")]
+    public string ApplicationUserId { get; set; }
     public string Name { get; set; }
     public string ImageUrl { get; set; }
     public virtual ApplicationUser User { get; set; }

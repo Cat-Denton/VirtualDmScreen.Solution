@@ -4,16 +4,14 @@
 
 @if (ViewBag.diceRolls.Count != 0)
 {
-  <ul>
-    @foreach (DiceRoll roll in ViewBag.diceRolls)
+  @foreach (DiceRoll roll in ViewBag.diceRolls)
     {
-      <li>
-        @roll.NumberOfDice @roll.NumberOfSides-sided dice resulting in @roll.Result total
+      <p>
+        <i>@roll.DateTimeStamp</i>
         <br>
-        @roll.DateTimeStamp @roll.Character.Name
-      </li>
+        <b>@roll.Character.Name</b> rolled @roll.NumberOfDice @roll.NumberOfSides-sided dice resulting in @roll.Result
+      </p>
     }
-  </ul>
 }
 
 @using (Html.BeginForm("Create","DiceRolls"))

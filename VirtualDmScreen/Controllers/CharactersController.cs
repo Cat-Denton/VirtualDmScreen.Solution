@@ -54,6 +54,20 @@ namespace VirtualDmScreen.Controllers
       var thisCharacters = _db.Characters.FirstOrDefault(Characters => Characters.CharacterId == id);
       return View(thisCharacters);
     }
+    
+    public ActionResult Edit(int id)
+    {
+      var thisCharacter = _db.Characters.FirstOrDefault(Character => Character.CharacterId == id);
+      return View(thisCharacter);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Character Character)
+    {
+      _db.Entry(Character).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
     public ActionResult Delete(int id)
     {
