@@ -35,11 +35,14 @@ namespace VirtualDmScreen.Controllers
             ViewBag.SelectedTrack = dmTrackSelection;
             ViewBag.SelectedImg = dmImgSelection;
             
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _userManager.FindByIdAsync(userId);
-            Character model = currentUser.Character;
-            Console.WriteLine("************************************" + currentUser.Character.Name + currentUser.Character.BoxId);
-            return View(model);
+            // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // var currentUser = await _userManager.FindByIdAsync(userId);
+            var characterList = _db.Characters.ToList();
+            ViewBag.lastFourChars = characterList.Skip(Math.Max(0, characterList.Count() - 4));
+
+            // Character model = currentUser.Character;
+            // Console.WriteLine("************************************" + currentUser.Character.Name + currentUser.Character.BoxId);
+            return View();
         }
 
         [HttpPost]
@@ -52,12 +55,17 @@ namespace VirtualDmScreen.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditCharacter(Character character, int boxId)
+        public ActionResult EditCharacter(Character character, int boxId, int characterId, int userId)
             {
         //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         //     var thisCharacter = _db.Characters.FirstOrDefault(Character => Character.ApplicationUserId == userId);
+            Console.WriteLine("Editing " + character.Name);
+            character.CharacterId = characterId;
+            Console.WriteLine("CharacterId: " + character.CharacterId);
+            Console.WriteLine("User: " + character.User);
             character.BoxId = boxId;
-            Console.WriteLine(boxId);
+            Console.WriteLine("boxId: " + boxId);
+            Console.WriteLine("character.BoxId: " + character.BoxId);
             _db.Entry(character).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
