@@ -31,9 +31,12 @@ else
             </div>
             <div class="col-6">
             </div>
-            <div class="col-3" id="dicebox">
+            <div class="col-3" style="overflow:auto" id="dicebox">
                 <h5>Dice Box</h5>
-                <p>Some text here!</p>
+                <p>
+                    @{ Html.RenderPartial("~/Views/DiceRolls/Index.cshtml", ViewBag.DiceRolls as List<DiceRoll>); }
+                    @{ Html.RenderPartial("~/Views/DiceRolls/Create.cshtml", new DiceRoll()); }
+                </p>
             </div>
         </div>
     <div>
@@ -74,6 +77,6 @@ else
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-    console.log($('#chatbox'));
+    $('#dicebox').scrollTop($('#dicebox')[0].scrollHeight);
     $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
 </script>

@@ -34,6 +34,7 @@ namespace VirtualDmScreen.Controllers
             ViewBag.SelectedTrack = dmTrackSelection;
             ViewBag.SelectedImg = dmImgSelection;
             ViewBag.Messages = _db.Messages.ToList();
+            ViewBag.DiceRolls = _db.DiceRolls.ToList();
             return View();
         }
 
@@ -44,6 +45,18 @@ namespace VirtualDmScreen.Controllers
             _db.Entry(newDmChoice).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateRoll(DiceRoll diceRoll)
+        {
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        diceRoll.RollDice();
+        diceRoll.DateTimeStamp = DateTime.Now;
+        diceRoll.Character = currentUser.Character;
+        _db.DiceRolls.Add(diceRoll);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
         }
         public IActionResult Privacy()
         {
