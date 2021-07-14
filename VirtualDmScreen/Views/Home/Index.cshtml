@@ -1,9 +1,69 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+<link rel="stylesheet" href="~/css/styles.css" />
+<h1> Welcome to Virtual Dm Screen </h1>
+<body style="background-image: url('@ViewBag.SelectedImg.ImgPath');">
+<iframe src='https://open.spotify.com/embed/track/@ViewBag.SelectedTrack.SpotifyTrack' width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>@Html.ActionLink("Register/Login", "Index", "Account")</p>
-    <p>@Html.ActionLink("Authentication Test Page", "Index", "AuthenticationTest")</p>
-</div>
+@if (@User.IsInRole("DM"))
+{   
+    @using (Html.BeginForm())
+    {
+        @Html.DropDownList("DmTrackSelectionId")
+        @Html.DropDownList("DmImgSelectionId")
+
+        <input type="submit" value="Input Selections">
+
+    }
+}
+else
+{
+    <p>Your Screen</p>
+}
+  <hr>
+
+<div class="container">
+        <div class="row">
+            <div class="col-3">
+                <h1>Chat Box</h1>
+                <p>Some text here!</p>
+            </div>
+            <div class="col-6">
+            </div>
+            <div class="col-3">
+                <h1>Dice Box</h1>
+                <p>Some text here!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2" id="emptyBox">
+                  <p>@Html.ActionLink("Register/Login", "Index", "Account", null, new { id="OT", style = "color:red" })</p>
+                  <p>@Html.ActionLink("Home", "Index", "Home")</p>
+            </div>
+            <div class="col-2" id="playerOne">
+                <h3>Player One</h3>
+                <input type="button" value="Pick Character" onclick= "location.href='@Url.Action("Index", "Home")'" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+            <div class="col-2">
+                <h3>Player Two</h3>
+                <input type="button" value="Pick Character" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+            <div class="col-2">
+                <h3>Player Three</h3>
+                <input type="button" value="Pick Character" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+            <div class="col-2">
+                <h3>Player Four</h3>
+                <input type="button" value="Pick Character" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+            <div class="col-2">
+                <h3>Player Five</h3>
+                <input type="button" value="Pick Character" />
+                <input type="button" value="Upload Portrait" />
+            </div>
+        </div>
+  </div>
+  </body>
+  

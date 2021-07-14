@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtualDmScreen.Models;
 
 namespace VirtualDmScreen.Migrations
 {
     [DbContext(typeof(VirtualDmScreenContext))]
-    partial class VirtualDmScreenContextModelSnapshot : ModelSnapshot
+    [Migration("20210713214727_DmImgSelection")]
+    partial class DmImgSelection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,19 +223,18 @@ namespace VirtualDmScreen.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.HasKey("CharacterId");
 
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Characters");
                 });
@@ -407,14 +408,14 @@ namespace VirtualDmScreen.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "7574d767-72ae-4325-8846-c19d4ca30299",
+                            ConcurrencyStamp = "ec976d2a-96d5-485f-b2be-7f86c5187c48",
                             Name = "DM",
                             NormalizedName = "DM"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "b6d90467-ba9c-4393-923e-6b1dd3509594",
+                            ConcurrencyStamp = "20d0c3b3-8aa8-4583-8ca7-3012bfbb8bac",
                             Name = "Player",
                             NormalizedName = "PLAYER"
                         });
@@ -474,8 +475,8 @@ namespace VirtualDmScreen.Migrations
             modelBuilder.Entity("VirtualDmScreen.Models.Character", b =>
                 {
                     b.HasOne("VirtualDmScreen.Models.ApplicationUser", "User")
-                        .WithOne("Character")
-                        .HasForeignKey("VirtualDmScreen.Models.Character", "ApplicationUserId");
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -518,11 +519,6 @@ namespace VirtualDmScreen.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Character");
-                });
-
-            modelBuilder.Entity("VirtualDmScreen.Models.ApplicationUser", b =>
-                {
                     b.Navigation("Character");
                 });
 

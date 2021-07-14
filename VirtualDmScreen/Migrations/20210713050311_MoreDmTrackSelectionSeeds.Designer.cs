@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtualDmScreen.Models;
 
 namespace VirtualDmScreen.Migrations
 {
     [DbContext(typeof(VirtualDmScreenContext))]
-    partial class VirtualDmScreenContextModelSnapshot : ModelSnapshot
+    [Migration("20210713050311_MoreDmTrackSelectionSeeds")]
+    partial class MoreDmTrackSelectionSeeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,19 +223,18 @@ namespace VirtualDmScreen.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.HasKey("CharacterId");
 
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Characters");
                 });
@@ -272,15 +273,10 @@ namespace VirtualDmScreen.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DmImgSelectionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("DmTrackSelectionId")
                         .HasColumnType("int");
 
                     b.HasKey("DmChoiceId");
-
-                    b.HasIndex("DmImgSelectionId");
 
                     b.HasIndex("DmTrackSelectionId");
 
@@ -290,51 +286,7 @@ namespace VirtualDmScreen.Migrations
                         new
                         {
                             DmChoiceId = 1,
-                            DmImgSelectionId = 1,
                             DmTrackSelectionId = 1
-                        });
-                });
-
-            modelBuilder.Entity("VirtualDmScreen.Models.DmImgSelection", b =>
-                {
-                    b.Property<int>("DmImgSelectionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImgName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("ImgPath")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("DmImgSelectionId");
-
-                    b.ToTable("DmImgSelections");
-
-                    b.HasData(
-                        new
-                        {
-                            DmImgSelectionId = 1,
-                            ImgName = "Party of Adventurers",
-                            ImgPath = "/img/party.jpg"
-                        },
-                        new
-                        {
-                            DmImgSelectionId = 2,
-                            ImgName = "White Dragon",
-                            ImgPath = "/img/whitedragon.jpg"
-                        },
-                        new
-                        {
-                            DmImgSelectionId = 3,
-                            ImgName = "Red Dragon",
-                            ImgPath = "/img/reddragon.jpg"
-                        },
-                        new
-                        {
-                            DmImgSelectionId = 4,
-                            ImgName = "Fire Breathing Dragon",
-                            ImgPath = "/img/firebreath.jpg"
                         });
                 });
 
@@ -407,14 +359,14 @@ namespace VirtualDmScreen.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "7574d767-72ae-4325-8846-c19d4ca30299",
+                            ConcurrencyStamp = "14a4be72-d5ed-41c7-a4d8-1d5af90428d4",
                             Name = "DM",
                             NormalizedName = "DM"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "b6d90467-ba9c-4393-923e-6b1dd3509594",
+                            ConcurrencyStamp = "d9035dbb-7381-496f-81d8-94570fe74e97",
                             Name = "Player",
                             NormalizedName = "PLAYER"
                         });
@@ -474,8 +426,8 @@ namespace VirtualDmScreen.Migrations
             modelBuilder.Entity("VirtualDmScreen.Models.Character", b =>
                 {
                     b.HasOne("VirtualDmScreen.Models.ApplicationUser", "User")
-                        .WithOne("Character")
-                        .HasForeignKey("VirtualDmScreen.Models.Character", "ApplicationUserId");
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -493,19 +445,11 @@ namespace VirtualDmScreen.Migrations
 
             modelBuilder.Entity("VirtualDmScreen.Models.DmChoice", b =>
                 {
-                    b.HasOne("VirtualDmScreen.Models.DmImgSelection", "DmImgSelection")
-                        .WithMany()
-                        .HasForeignKey("DmImgSelectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("VirtualDmScreen.Models.DmTrackSelection", "DmTrackSelection")
                         .WithMany()
                         .HasForeignKey("DmTrackSelectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("DmImgSelection");
 
                     b.Navigation("DmTrackSelection");
                 });
@@ -518,11 +462,6 @@ namespace VirtualDmScreen.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Character");
-                });
-
-            modelBuilder.Entity("VirtualDmScreen.Models.ApplicationUser", b =>
-                {
                     b.Navigation("Character");
                 });
 
