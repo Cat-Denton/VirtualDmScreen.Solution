@@ -126,6 +126,10 @@ body {
   opacity: 0.0;
 }
 
+#playerportrait {
+  opacity: 1.0;
+}
+
 select {
   width: 25%;
 }

@@ -6,7 +6,7 @@
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    @Html.LabelFor(user => user.Email)
+    @Html.Label("Input character name")
     @Html.TextBoxFor(user=> user.Email)
     <br>
     @Html.LabelFor(user => user.Password)
@@ -14,6 +14,9 @@
     <br>
     @Html.LabelFor(user => user.ConfirmPassword)
     @Html.PasswordFor(user => user.ConfirmPassword)
+    <br>
+    @Html.Label("Character Image URL")
+    @Html.TextBox("imageUrl")
     <br>
     @Html.Label("Select role")
     @Html.DropDownList("RoleId");

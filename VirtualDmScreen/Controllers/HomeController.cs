@@ -12,6 +12,7 @@ using VirtualDmScreen.Models;
 
 namespace VirtualDmScreen.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
 
@@ -22,7 +23,6 @@ namespace VirtualDmScreen.Controllers
         _userManager = userManager;
         _db = db;
         }
-
         public async Task<IActionResult> Index()
         {
             List<DmTrackSelection> tracks = _db.DmTrackSelections.ToList();
@@ -55,12 +55,13 @@ namespace VirtualDmScreen.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult EditCharacter(Character character, int boxId, int characterId, int userId)
-            {
+        public ActionResult EditCharacter(Character character, int boxId, int characterId, string userId)
+        {
         //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         //     var thisCharacter = _db.Characters.FirstOrDefault(Character => Character.ApplicationUserId == userId);
             Console.WriteLine("Editing " + character.Name);
             character.CharacterId = characterId;
+            character.ApplicationUserId = userId;
             Console.WriteLine("CharacterId: " + character.CharacterId);
             Console.WriteLine("User: " + character.User);
             character.BoxId = boxId;
@@ -69,18 +70,18 @@ namespace VirtualDmScreen.Controllers
             _db.Entry(character).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
 
         public async Task<ActionResult> CreateRoll(DiceRoll diceRoll)
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
-        diceRoll.RollDice();
-        diceRoll.DateTimeStamp = DateTime.Now;
-        diceRoll.Character = currentUser.Character;
-        _db.DiceRolls.Add(diceRoll);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
-        }
         {
-            return View();
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            diceRoll.RollDice();
+            diceRoll.DateTimeStamp = DateTime.Now;
+            diceRoll.Character = currentUser.Character;
+            _db.DiceRolls.Add(diceRoll);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

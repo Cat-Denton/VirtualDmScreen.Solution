@@ -34,7 +34,7 @@ namespace VirtualDmScreen.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Register (RegisterViewModel model, string roleId)
+    public async Task<ActionResult> Register (RegisterViewModel model, string roleId, string imageUrl)
     {
         var user = new ApplicationUser { UserName = model.Email };
         var role = await _roleManager.FindByIdAsync(roleId);
@@ -42,6 +42,7 @@ namespace VirtualDmScreen.Controllers
         IdentityResult roleResult = await _userManager.AddToRoleAsync(user, role.Name);
 
         Character defaultCharacter = new Character() { Name = user.UserName, ApplicationUserId = user.Id };
+        defaultCharacter.ImageUrl = imageUrl;
         _db.Characters.Add(defaultCharacter);
         _db.SaveChanges();
 
