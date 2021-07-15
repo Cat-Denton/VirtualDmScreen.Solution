@@ -1,4 +1,4 @@
-<body style="background-image: url('@ViewBag.SelectedImg.ImgPath');background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
+﻿<body style="background-image: url('@ViewBag.SelectedImg.ImgPath');background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;">
 <link rel="stylesheet" href="~/css/styles.css" />
 <h1>Welcome to Virtual Dm Screen</h1>
 <iframe src='https://open.spotify.com/embed/track/@ViewBag.SelectedTrack.SpotifyTrack' width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -52,7 +52,7 @@ else
 </div>
 
 <div class="container">
-    <div class="row" id="playerportrait" style="opacity=1.0;">
+    <div class="row">
         @* Player One *@
         @{ int currentBoxId = 1; }
         @foreach(Character character in ViewBag.lastFourChars)
@@ -60,7 +60,7 @@ else
             Console.WriteLine(character.Name);
             Console.WriteLine(character.BoxId);
    
-            <div class="col-3">
+            <div class="col-3" id="avatar">
                 @character.Name
                 <br>
                 <img src="@character.ImageUrl">
