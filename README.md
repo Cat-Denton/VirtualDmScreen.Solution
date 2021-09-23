@@ -1,6 +1,6 @@
 # _Virtual DM Screen_
 
-#### _A database-backed web app that to enable players to Roleplay with each other online. Users may choose either a DM or Player role. DMs can choose background pictures and music. DMs and Players may chat and roll dice. WiP. Refresh the page to see chat and dice roll messages._
+#### _A database-backed web app that to enable up to 4 users to roleplay with each other online. Users may choose either a DM or Player role. DMs can choose background pictures and music. DMs and Players may chat and roll dice. WiP. Refresh the page to see chat and dice roll messages._
 
 #### By _**Shanen Cross**_, _**Cat Denton**_, _**Juan Hasbun**_
 
@@ -16,7 +16,7 @@
 
 ## Description
 
-_An Epicodus Teamweek project for the January 2021 Part Time Cohort. This is a WiP application that uses a MySQL database to allow users to register with a character name, a character portrait, and choose to be either the DM or a Player. The DM can set background music and a background picture from hard-coded choices. The DM or Players can enter chat messages or dice rolls. If the other users refresh their browser after changes are made, they can see the updated background picture and see new chat messages and dice rolls. Further work planned for this application is to implement Ajax to allow the DOM to update in real time when users make changes to the database._
+_An Epicodus Teamweek project for the January 2021 Part Time Cohort. This is a WiP application that uses a MySQL database to allow users to register with a character name, a character portrait, and choose to be either the DM or a Player. Roles-based authorization allows DM to set background music and a background picture from hard-coded choices. The DM or Players can enter chat messages or dice rolls. If the other users refresh their browser after changes are made, they can see the updated background picture and see new chat messages and dice rolls. Further work planned for this application is to implement Ajax to allow the DOM to update in real time when users make changes to the database._
 
 <!-- ![Relationship Chart](https://i.imgur.com/9XYbJ4p.png) -->
 
